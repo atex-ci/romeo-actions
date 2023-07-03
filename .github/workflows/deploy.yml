@@ -6,12 +6,12 @@ on:
       GIT_BRANCH:
         description: 'branch to clone'     
         required: true
-        default: 'main'
-        
+        default: 'master'
+
 jobs: 
   main:
     runs-on: ubuntu-latest
-    env:        
+    env:
       REPO_TO_FETCH: "github.com/atex-polopoly/dns-romeo.git"
       GH_USERNAME: ${{ secrets.GH_USERNAME }}
       GH_PASSWORD: ${{ secrets.GH_PASSWORD }}
