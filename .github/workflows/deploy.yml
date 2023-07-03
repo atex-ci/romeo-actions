@@ -15,6 +15,7 @@ jobs:
       REPO_TO_FETCH: "github.com/atex-polopoly/dns-romeo.git"
       GH_USERNAME: ${{ secrets.GH_USERNAME }}
       GH_PASSWORD: ${{ secrets.GH_PASSWORD }}
+      CONVOX_TOKEN: ${{ secrets.CONVOX_TOKEN }}
 
     steps:
       - name: checkout
@@ -24,3 +25,18 @@ jobs:
           cd _
           ls -la
 
+      - name: install convox cli
+        run: |
+          curl -L https://github.com/convox/convox/releases/latest/download/convox-linux -o /tmp/convox
+          mv /tmp/convox /usr/local/bin/convox
+          chmod 755 /usr/local/bin/convox
+          convox version
+
+      - name: deploy
+        run: |
+          echo "login into convox cli"
+          convox login console.convox.com -t $CONVOX_TOKEN
+          echo "switch rack"
+          convox switch atex-development/atex-dev
+          echo "deploy"
+          convox deploy --app romeo-dev
