@@ -2,13 +2,23 @@ name: manual deploy
 
 on:  
   workflow_dispatch:
-
+    inputs:
+      GIT_BRANCH:
+        description: 'branch to clone'     
+        required: true
+        default: 'main'
+        
 jobs: 
   main:
     runs-on: ubuntu-latest
+    env:        
+      REPO_TO_FETCH: "github.com/atex-polopoly/dns-romeo.git"
+      GH_USERNAME: ${{ secrets.GH_USERNAME }}
+      GH_PASSWORD: ${{ secrets.GH_PASSWORD }}
 
     steps:
-      - name: SAY HELLO
+      - name: checkout
         run: |
-          echo "hello world"
+          git config --global http.sslverify false
+          git clone --branch ${{ github.event.inputs.GIT_BRANCH}} https://$GH_USERNAME:$GH_PASSWORD@$REPO_TO_FETCH _ 
 
