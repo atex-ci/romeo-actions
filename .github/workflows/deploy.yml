@@ -36,9 +36,10 @@ jobs:
         run: |
           echo "login into convox cli"
           convox login console.convox.com -t $CONVOX_TOKEN
-          convox racks
-          convox apps
+          convox racks          
           echo "switch rack"
           convox switch atex-development/atex-dev
+          echo "list apps"
+          convox apps
           echo "deploy"
           convox deploy --app romeo-dev
