@@ -20,5 +20,7 @@ jobs:
       - name: checkout
         run: |
           git config --global http.sslverify false
-          git clone --branch ${{ github.event.inputs.GIT_BRANCH}} https://$GH_USERNAME:$GH_PASSWORD@$REPO_TO_FETCH _ 
+          git clone --branch ${{ github.event.inputs.GIT_BRANCH}} https://$GH_USERNAME:$GH_PASSWORD@$REPO_TO_FETCH _
+          cd _
+          ls -la
 
