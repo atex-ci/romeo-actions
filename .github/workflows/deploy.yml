@@ -43,4 +43,6 @@ jobs:
           convox apps
           echo "deploy"
           # convox deploy --app romeo-dev
+          cd _
+          chmod +x launch.sh
           ./launch.sh
