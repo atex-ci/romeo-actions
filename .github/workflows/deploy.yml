@@ -6,7 +6,7 @@ on:
       GIT_BRANCH:
         description: 'branch to clone'     
         required: true
-        default: 'feature/test'
+        default: 'deployTestBranch'
 
 jobs: 
   main:
