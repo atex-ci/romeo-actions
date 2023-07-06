@@ -6,7 +6,7 @@ on:
       GIT_BRANCH:
         description: 'branch to clone'     
         required: true
-        default: 'master'
+        default: 'feature/test'
 
 jobs: 
   main:
@@ -32,17 +32,17 @@ jobs:
           chmod 755 /usr/local/bin/convox
           convox version
 
-      - name: deploy
-        run: |
-          # echo "login into convox cli"
-          # convox login console.convox.com -t $CONVOX_TOKEN
-          # convox racks          
-          # echo "switch rack"
-          # convox switch atex-development/atex-dev
-          # echo "list apps"
-          # convox apps
-          # echo "deploy"
-          # convox deploy --app romeo-dev
-          cd _
-          chmod +x launch.sh
-          ./launch.sh
+      # - name: deploy
+      #   run: |
+      #     echo "login into convox cli"
+      #     convox login console.convox.com -t $CONVOX_TOKEN
+      #     convox racks          
+      #     echo "switch rack"
+      #     convox switch atex-development/atex-dev
+      #     echo "list apps"
+      #     convox apps
+      #     echo "deploy"
+      #     convox deploy --app romeo-dev
+      #     # cd _
+      #     # chmod +x launch.sh
+      #     # ./launch.sh
