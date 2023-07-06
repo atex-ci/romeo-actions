@@ -34,6 +34,7 @@ jobs:
 
       - name: deploy
         run: |
+          ls -la
           echo "login into convox cli"
           convox login console.convox.com -t $CONVOX_TOKEN
           convox racks          
