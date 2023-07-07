@@ -13,6 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       REPO_TO_FETCH: "github.com/atex-polopoly/dns-romeo.git"
+      REPO2_TO_FETCH: "github.com/atex-polopoly/desk-node-server.git"
       GH_USERNAME: ${{ secrets.GH_USERNAME }}
       GH_PASSWORD: ${{ secrets.GH_PASSWORD }}
       CONVOX_TOKEN: ${{ secrets.CONVOX_TOKEN }}
@@ -26,7 +27,7 @@ jobs:
           node -v
       
 
-      - name: checkout
+      - name: checkout dns-romeo
         run: |
           git config --global http.sslverify false
           git clone --branch ${{ github.event.inputs.GIT_BRANCH}} https://$GH_USERNAME:$GH_PASSWORD@$REPO_TO_FETCH dns-romeo
@@ -35,6 +36,17 @@ jobs:
           npm install
           npm run build
           ls -la dist/
+
+      - name: checkout desk-node-server
+        run: |
+          git config --global http.sslverify false
+          git clone --branch ${{ github.event.inputs.GIT_BRANCH}} https://$GH_USERNAME:$GH_PASSWORD@github.com/atex-polopoly/desk-node-server.git desk-node-server
+          cd desk-node-server
+          ls -la
+          mkdir romeo/
+          cp -r -f -v ../dns-romeo/dist/* ./romeo
+          ls -la romeo/
+
 
       - name: install convox cli
         run: |
@@ -55,6 +67,7 @@ jobs:
           echo "list apps"
           convox apps
           echo "deploy"
+          exit 1
           convox deploy --app romeo-dev
       #     # cd dns-romeo
       #     # chmod +x launch.sh
