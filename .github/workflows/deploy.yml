@@ -21,6 +21,7 @@ jobs:
       - name: checkout
         run: |
           docker -v
+          nvm -v
           exit 1
           git config --global http.sslverify false
           git clone --branch ${{ github.event.inputs.GIT_BRANCH}} https://$GH_USERNAME:$GH_PASSWORD@$REPO_TO_FETCH _
