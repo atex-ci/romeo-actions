@@ -32,11 +32,6 @@ jobs:
           chmod 755 /usr/local/bin/convox
           convox version
 
-      - name: build
-        run: |
-          cd _
-          npm install
-          npm run build
 
       - name: deploy
         run: |
