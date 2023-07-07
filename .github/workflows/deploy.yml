@@ -28,13 +28,13 @@ jobs:
 
       - name: checkout
         run: |
-          docker -v
-          nvm -v
-          exit 1
           git config --global http.sslverify false
-          git clone --branch ${{ github.event.inputs.GIT_BRANCH}} https://$GH_USERNAME:$GH_PASSWORD@$REPO_TO_FETCH _
-          cd _
+          git clone --branch ${{ github.event.inputs.GIT_BRANCH}} https://$GH_USERNAME:$GH_PASSWORD@$REPO_TO_FETCH dns-romeo
+          cd dns-romeo
           ls -la
+          npm install
+          npm run build
+          ls -la dist/
 
       - name: install convox cli
         run: |
@@ -46,7 +46,7 @@ jobs:
 
       - name: deploy
         run: |
-          cd _
+          cd dns-romeo
           echo "login into convox cli"
           convox login console.convox.com -t $CONVOX_TOKEN
           convox racks          
@@ -56,6 +56,6 @@ jobs:
           convox apps
           echo "deploy"
           convox deploy --app romeo-dev
-      #     # cd _
+      #     # cd dns-romeo
       #     # chmod +x launch.sh
       #     # ./launch.sh
