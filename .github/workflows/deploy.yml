@@ -3,10 +3,15 @@ name: manual deploy
 on:  
   workflow_dispatch:
     inputs:
-      GIT_BRANCH:
-        description: 'branch to clone'     
+      GIT_BRANCH_ROMEO:
+        description: 'branch to clone for dns-romeo'     
         required: true
         default: 'master'
+        
+      GIT_BRANCH_DESK:
+        description: 'branch to clone for desk-node-server'     
+        required: true
+        default: 'mergeADM590'
 
 jobs: 
   main:
@@ -30,7 +35,7 @@ jobs:
       - name: checkout dns-romeo
         run: |
           git config --global http.sslverify false
-          git clone --branch ${{ github.event.inputs.GIT_BRANCH}} https://$GH_USERNAME:$GH_PASSWORD@$REPO_TO_FETCH dns-romeo
+          git clone --branch ${{ github.event.inputs.GIT_BRANCH_ROMEO}} https://$GH_USERNAME:$GH_PASSWORD@$REPO_TO_FETCH dns-romeo
           cd dns-romeo
           ls -la
           npm install
@@ -40,7 +45,7 @@ jobs:
       - name: checkout desk-node-server
         run: |
           git config --global http.sslverify false
-          git clone --branch ${{ github.event.inputs.GIT_BRANCH}} https://$GH_USERNAME:$GH_PASSWORD@github.com/atex-polopoly/desk-node-server.git desk-node-server
+          git clone --branch ${{ github.event.inputs.GIT_BRANCH_DESK}} https://$GH_USERNAME:$GH_PASSWORD@$REPO2_TO_FETCH desk-node-server
           cd desk-node-server
           ls -la
           mkdir romeo/
