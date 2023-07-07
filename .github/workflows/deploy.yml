@@ -18,6 +18,14 @@ jobs:
       CONVOX_TOKEN: ${{ secrets.CONVOX_TOKEN }}
 
     steps:
+      - name: install nvm
+        uses: dcodeIO/setup-node-nvm@master
+        with:
+          node-version: 10
+      - run: |
+          node -v
+      
+
       - name: checkout
         run: |
           docker -v
