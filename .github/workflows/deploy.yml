@@ -11,7 +11,7 @@ on:
       GIT_BRANCH_DESK:
         description: 'branch to clone for desk-node-server'     
         required: true
-        default: 'mergeADM590'
+        default: 'mergeADM590Rep'
 
 jobs: 
   main:
