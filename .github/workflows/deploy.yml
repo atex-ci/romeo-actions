@@ -72,7 +72,6 @@ jobs:
           echo "list apps"
           convox apps
           echo "deploy"
-          exit 1
           convox deploy --app romeo-dev
       #     # cd dns-romeo
       #     # chmod +x launch.sh
